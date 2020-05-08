@@ -1,13 +1,24 @@
 package main
 
 import (
+	"database/sql"
 	"flag"
 	"fmt"
+	"log"
 	"strconv"
 
 	"github.com/jhontea/go_disburse/handlers"
+	"github.com/jhontea/go_disburse/repositories"
 	"github.com/jhontea/go_disburse/services"
+
+	_ "github.com/go-sql-driver/mysql"
 )
+
+// database
+var db *sql.DB
+
+// repositories
+var disburseRepository repositories.DisburseRepositoryInterface
 
 // services
 var disburseService services.DisburseServiceInterface
@@ -21,7 +32,10 @@ var (
 )
 
 func main() {
+	initMysql()
 	initServices()
+	initRepositories()
+	defer db.Close()
 
 	flag.Parse()
 	if len(flag.Args()) > 0 {
@@ -29,6 +43,20 @@ func main() {
 	} else {
 		fmt.Println("Please input command")
 	}
+}
+
+func initMysql() {
+	var err error
+
+	db, err = sql.Open("mysql", "root:password@tcp(localhost:3306)/disburse_db")
+
+	if err != nil {
+		log.Fatal(err)
+	}
+}
+
+func initRepositories() {
+	disburseRepository = repositories.NewDisburseRepository(db)
 }
 
 func initServices() {
