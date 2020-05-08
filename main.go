@@ -60,7 +60,7 @@ func initRepositories() {
 }
 
 func initServices() {
-	disburseService = services.NewDisburseService()
+	disburseService = services.NewDisburseService(disburseRepository)
 }
 
 func processCommand(commands []string) {

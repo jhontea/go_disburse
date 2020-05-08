@@ -5,6 +5,7 @@ import "database/sql"
 // DisburseModel :nodoc:
 type DisburseModel struct {
 	ID              int          `json:"id"`
+	TransactionID   int          `json:"transaction_id"`
 	Amount          int          `json:"amount"`
 	Status          string       `json:"status"`
 	Timestamp       sql.NullTime `json:"timestamp"`
