@@ -2,7 +2,7 @@ package objects
 
 // DisburseResponseObject :nodoc:
 type DisburseResponseObject struct {
-	ID              int    `json:"int"`
+	ID              int    `json:"id"`
 	Amount          int    `json:"amount"`
 	Status          string `json:"status"`
 	Timestamp       string `json:"timestamp"`

@@ -12,7 +12,8 @@ import (
 
 // DisburseServiceInterface :nodoc:
 type DisburseServiceInterface interface {
-	SendDisburce(requestData requests.RequestDisburse) (objects.DisburseResponseObject, error)
+	SendDisburse(requestData requests.RequestDisburse) (objects.DisburseResponseObject, error)
+	GetDisburseStatus(transactionID int) (objects.DisburseResponseObject, error)
 }
 
 // DisburseService :nodoc:
@@ -25,8 +26,8 @@ func NewDisburseService() DisburseServiceInterface {
 	return &DisburseService{}
 }
 
-// SendDisburce :nodoc:
-func (svc *DisburseService) SendDisburce(requestData requests.RequestDisburse) (objects.DisburseResponseObject, error) {
+// SendDisburse :nodoc:
+func (svc *DisburseService) SendDisburse(requestData requests.RequestDisburse) (objects.DisburseResponseObject, error) {
 	var disburseResponse objects.DisburseResponseObject
 
 	svc.apiCall.Method = "POST"
@@ -48,8 +49,8 @@ func (svc *DisburseService) SendDisburce(requestData requests.RequestDisburse) (
 	return disburseResponse, err
 }
 
-// GetDisburceStatus :nodoc:
-func (svc *DisburseService) GetDisburceStatus(transactionID int) (objects.DisburseResponseObject, error) {
+// GetDisburseStatus :nodoc:
+func (svc *DisburseService) GetDisburseStatus(transactionID int) (objects.DisburseResponseObject, error) {
 	var disburseResponse objects.DisburseResponseObject
 
 	svc.apiCall.Method = "GET"
