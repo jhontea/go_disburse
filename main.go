@@ -33,9 +33,9 @@ var (
 
 func main() {
 	initMysql()
-	initServices()
 	initRepositories()
-	defer db.Close()
+	initServices()
+	// defer db.Close()
 
 	flag.Parse()
 	if len(flag.Args()) > 0 {
