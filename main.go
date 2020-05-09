@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"log"
 	"strconv"
+	"time"
 
 	"github.com/jhontea/go_disburse/handlers"
 	"github.com/jhontea/go_disburse/repositories"
@@ -29,6 +30,9 @@ var (
 
 	// CommandDisburseStatus :nodoc:
 	CommandDisburseStatus = "disburse-status"
+
+	// CommandTimeExecution :nodoc:
+	CommandTimeExecution = "time"
 )
 
 func main() {
@@ -82,8 +86,24 @@ func processCommand(commands []string) {
 			}
 
 			transactionID, _ := strconv.Atoi(commands[1])
-			fmt.Println("processing get disburse status")
 			disburseeHandler.GetDisburseStatus(transactionID)
+		}
+	case CommandTimeExecution:
+		{
+			start := time.Now()
+
+			if len(commands) < 3 {
+				fmt.Println("Command must be: `time {transaction_id} {n}`")
+				return
+			}
+
+			transactionID, _ := strconv.Atoi(commands[1])
+			n, _ := strconv.Atoi(commands[2])
+			for i := 1; i <= n; i++ {
+				disburseeHandler.CheckTimeExecution(transactionID)
+				elapsed := time.Since(start)
+				log.Printf("Total execution %d data time: %s", i, elapsed)
+			}
 		}
 	default:
 		{

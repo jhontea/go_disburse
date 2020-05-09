@@ -52,3 +52,13 @@ func (h *DisburseHandler) GetDisburseStatus(transactionID int) {
 	fmt.Printf("%s\n", print)
 	return
 }
+
+// CheckTimeExecution :nodoc:
+func (h *DisburseHandler) CheckTimeExecution(transactionID int) {
+	_, err := h.disburseService.GetDisburseStatus(transactionID)
+	if err != nil {
+		fmt.Printf("%+v\n", err.Error())
+		return
+	}
+	return
+}
