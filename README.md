@@ -1,21 +1,21 @@
 # How to use it
 
-Use binary file `./disburse` + command
+`go run *.go` + command
 
 # Command
 CommandDisburse = command to send disburse
 ```
-./disburse disburse
+go run *.go disburse
 ```
 
 CommandDisburseStatus = command to get and update disburse status
 ```
-./disburse disburse-status {transaction_id}
+go run *.go disburse-status {transaction_id}
 ```
 
 CommandTimeExecution = command to check time execution get and update disburse status
 ```
-./disburse time {transaction_id} {loop}
+go run *.go time {transaction_id} {loop}
 ```
 
 # Time Execution Result
