@@ -1,5 +1,11 @@
 # How to use it
+1. Run migration
+go too root project
+`cd migration`
+`go run migration.go`
 
+2. Run command
+go to root project
 `go run *.go` + command
 
 # Command
